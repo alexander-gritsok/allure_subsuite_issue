@@ -7,15 +7,6 @@ import java.util.List;
 
 public class SimpleTest {
 
-    private String n1;
-    private Integer n2;
-
-    @Factory(dataProvider = "test1")
-    public SimpleTest(String n1, Integer n2) {
-        this.n1 = n1;
-        this.n2 = n2;
-    }
-
     @DataProvider(name = "test1")
     static public Iterator<Object[]> createData1() {
         return List.of(
@@ -25,8 +16,8 @@ public class SimpleTest {
                 .iterator();
     }
 
-    @Test
-    private void oneTest() {
+    @Test(dataProvider = "test1")
+    private void oneTest(String n1, Integer n2) {
         System.out.println(n1 + " " + n2);
     }
 }
